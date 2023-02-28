@@ -1,9 +1,21 @@
 import Link from 'next/link';
 import SocialButtons from '../buttons/social_buttons/SocialButtons';
 import classes from './menuOverlay.module.css';
+import Image from 'next/image';
+import { useState,createContext } from 'react';
+import { IntlProvider,FormattedMessage } from "react-intl";
+import {message} from '../../data/langData';
+import { useLanguage,useUpdateLanguage } from './LanguageContext';
+
+export const LanguageContext = createContext();
 
 const MenuOverlay=({navbarOpen,setNavbarOpen})=>{
-    return  <nav
+    const language =useLanguage();
+    const handleLanguage=useUpdateLanguage();
+
+    return  <LanguageContext.Provider value={language}>
+      <IntlProvider locale={language} messages={message[language]}>
+      <nav
     className={`fixed flex top-0 left-0 w-full p-10 z-10 h-screen pt-24 bg-gray-900 text-white bg-opacity-100 transform delay-100 transition-all duration-300 ${
       navbarOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full"
     }`}
@@ -17,7 +29,7 @@ const MenuOverlay=({navbarOpen,setNavbarOpen})=>{
           href="/"
           className="nav-link"
         >
-          Home
+          <FormattedMessage id="nav_menu_item_1" defaultMessage="Default" values={{language}} />
         </Link>
       </li>
       <li className={classes.nav_li}   onClick={(e) => {
@@ -28,7 +40,7 @@ const MenuOverlay=({navbarOpen,setNavbarOpen})=>{
           href="/menu"
           className="nav-link"
         >
-          Menu
+          <FormattedMessage id="nav_menu_item_2" defaultMessage="Default" values={{language}} />
         </Link>
       </li>
       <li className={classes.nav_li} onClick={(e) => {
@@ -39,7 +51,7 @@ const MenuOverlay=({navbarOpen,setNavbarOpen})=>{
           href="/contact"
           className="nav-link"
         >
-          Contact
+          <FormattedMessage id="nav_menu_item_3" defaultMessage="Default" values={{language}} />
         </Link>
       </li>
       <li className={classes.nav_li} onClick={(e) => {
@@ -50,14 +62,21 @@ const MenuOverlay=({navbarOpen,setNavbarOpen})=>{
           href="/FAQ"
           className="nav-link"
         >
-          FAQ
+          <FormattedMessage id="nav_menu_item_4" defaultMessage="Default" values={{language}} />
         </Link>
       </li>
       <li>
         <SocialButtons />
       </li>
+          <li>
+          {language==="en" && <Image onClick={handleLanguage} className={classes.flag} width={50} height={50} alt="" src="/images/tr.png" />}
+          {language==="tr" && <Image onClick={handleLanguage} className={classes.flag} width={50} height={50} alt="" src="/images/en.png" />}
+          
+          </li>
     </ul>
   </nav>
+      </IntlProvider>
+    </LanguageContext.Provider>
 }
 
 export default MenuOverlay

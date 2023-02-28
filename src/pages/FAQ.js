@@ -1,13 +1,22 @@
 import classes from '../styles/FAQ.module.css';
 import { AnimatePresence, motion } from 'framer-motion';
+import { IntlProvider,FormattedMessage } from "react-intl";
+import {message} from '../data/langData';
+import { useLanguage } from '@/components/Menu/LanguageContext';
+import Head from 'next/head';
 
 const FAQ = ()=>{
+    const language = useLanguage();
     return <>
+        <Head>
+          <title> {language==="en" ? "FAQ" : "SSS" } </title>
+      </Head>
+        <IntlProvider locale={language} messages={message[language]}>
         <AnimatePresence>
         <div className={classes.heading_container} >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className={classes.bg} src="/images/8.jpg" alt="" />
-            <h3 className={classes.heading} > Frequently Asked Questions </h3>
+            <h3 className={classes.heading} > <FormattedMessage id="faq" values={{language}} defaultMessage="Default" /> </h3>
         </div>
         <div className={classes.container}>
         <motion.div 
@@ -18,7 +27,7 @@ const FAQ = ()=>{
             viewport={{ once: true, }}
         >
              <motion.div>
-                <h4> Question: </h4>
+                <h4> <FormattedMessage id="faq_question" values={{language}} defaultMessage="Default" /> </h4>
                 </motion.div>
         </motion.div>
         <motion.div 
@@ -29,8 +38,8 @@ const FAQ = ()=>{
         viewport={{ once: true, }}
         >
              <motion.div>
-                <h4> Answer: </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia tempore pariatur corrupti ipsum corporis? Ex facilis ratione placeat eius recusandae consequuntur facere iusto dignissimos, voluptatem, labore nam atque, ipsum omnis?</p>
+                <h4> <FormattedMessage id="faq_answer" values={{language}} defaultMessage="Default" /> </h4>
+                <p><FormattedMessage id="faq_answer_1" values={language} defaultMessage="Default" /> </p>
                 </motion.div>
         </motion.div>
         <motion.div 
@@ -41,7 +50,7 @@ const FAQ = ()=>{
         viewport={{ once: true, }}
         >
              <motion.div>
-                <h4> Question: </h4>
+                <h4> <FormattedMessage id="faq_question" values={{language}} defaultMessage="Default" /> </h4>
                 </motion.div>
         </motion.div>
         <motion.div 
@@ -52,8 +61,8 @@ const FAQ = ()=>{
         viewport={{ once: true, }}
         >
              <motion.div>
-                <h4> Answer: </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia tempore pariatur corrupti ipsum corporis? Ex facilis ratione placeat eius recusandae consequuntur facere iusto dignissimos, voluptatem, labore nam atque, ipsum omnis?</p>
+                <h4> <FormattedMessage id="faq_answer" values={{language}} defaultMessage="Default" /> </h4>
+                <p><FormattedMessage id="faq_answer_2" values={language} defaultMessage="Default" /> </p>
                 </motion.div>
         </motion.div>
         <motion.div 
@@ -64,7 +73,7 @@ const FAQ = ()=>{
         viewport={{ once: true, }}
         >
              <motion.div>
-                <h4> Question: </h4>
+                <h4> <FormattedMessage id="faq_question" values={{language}} defaultMessage="Default" /> </h4>
                 </motion.div>
         </motion.div>
         <motion.div 
@@ -75,12 +84,13 @@ const FAQ = ()=>{
         viewport={{ once: true, }}
         >
              <motion.div>
-                <h4> Answer: </h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia tempore pariatur corrupti ipsum corporis? Ex facilis ratione placeat eius recusandae consequuntur facere iusto dignissimos, voluptatem, labore nam atque, ipsum omnis?</p>
+                <h4> <FormattedMessage id="faq_answer" values={{language}} defaultMessage="Default" /> </h4>
+                <p><FormattedMessage id="faq_answer_3" values={language} defaultMessage="Default" /> </p>
                 </motion.div>
         </motion.div>
         </div>
         </AnimatePresence>
+        </IntlProvider>
     </>
 }
 

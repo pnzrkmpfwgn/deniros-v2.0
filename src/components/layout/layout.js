@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect,useContext } from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import { IntlProvider,FormattedMessage } from "react-intl";
@@ -8,6 +8,8 @@ import {message} from  '../../data/langData';
 import Image from 'next/image';
 import { motion, AnimatePresence } from "framer-motion"
 import classes from './layout.module.css';
+import { LanguageContext } from "../Menu/MenuOverlay";
+import LanguageProvider from "../Menu/LanguageContext";
 
 //Might be useful for later
 //import { useOnScreen,useMediaQuery } from '../../utils/hooks';
@@ -17,7 +19,7 @@ import classes from './layout.module.css';
 
 
 export default function Layout({ children }) {
-  
+  const language = useContext(LanguageContext);
  // const [size, setSize] = useState();
   //const [ref, visible] = useOnScreen({ rootMargin: '-100px' })
   //const size = useMediaQuery(768)
@@ -47,7 +49,7 @@ export default function Layout({ children }) {
 
   return (
     <>
-       <LayoutContext.Provider value={{locale}} >
+       <LanguageProvider>
        <AnimatePresence>
         {
           loadingFinish && <motion.div className={classes.page_loading} 
@@ -80,7 +82,7 @@ export default function Layout({ children }) {
           <option value={x} key={x}>{x}</option>
         ))}
       </select> */}
-      <IntlProvider locale={locale} messages={message[locale]} >
+      <IntlProvider locale={language} messages={message[locale]} >
         {/* <div className="App w-full min-h screen bg-gray-800" > */}
         <div>
           <Header navbarOpen={navbarOpen} setNavbarOpen={setNavbarOpen} title={<FormattedMessage id="heading" defaultMessage="Default" values={{locale}} />} />
@@ -93,7 +95,7 @@ export default function Layout({ children }) {
             <Footer footer_title={<FormattedMessage id="heading" defaultMessage="Default" values={{locale}} />} />
         </div>
       </IntlProvider>
-      </LayoutContext.Provider>
+      </LanguageProvider>
  
     </>
   );

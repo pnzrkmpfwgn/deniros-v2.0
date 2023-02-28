@@ -3,10 +3,13 @@ import classes from './About.module.css';
 import classes_2 from '../../components/buttons/regular_button/Regular_button.module.css';
 import { AnimatePresence,motion} from 'framer-motion';
 import Link from 'next/link';
+import { IntlProvider,FormattedMessage } from "react-intl";
+import {message} from '../../data/langData';
 
-const About = () => {
+const About = ({language}) => {
       
     return <>
+        <IntlProvider locale={language} messages={message[language]} >
         <div  className={classes.about_container} >
             <AnimatePresence>
             <motion.div
@@ -26,8 +29,8 @@ const About = () => {
                 className={classes.text_container}
                 viewport={{ once: true,  }}
                 >
-                <h2 className={classes.heading} >Who Are We?</h2>
-                <p className={classes.paragraph} >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem quibusdam velit fugit magnam magni ad, perspiciatis nobis, itaque quae commodi beatae mollitia rem dolores fugiat aliquam quo ut! Sunt, dolorem?</p>
+                <h2 className={classes.heading} ><FormattedMessage id="about_heading_1" defaultMessage="Default" values={{language}} ></FormattedMessage></h2>
+                <p className={classes.paragraph} ><FormattedMessage id="about_text_1" defaultMessage="Default" values={{language}} ></FormattedMessage></p>
             </motion.div>
             </AnimatePresence>
         </div>
@@ -40,8 +43,8 @@ const About = () => {
                 transition={{delay:0.8,duration:0.6,type: "spring", stiffness: 30}}
                 viewport={{ once: true  }}
                 className={classes.text_container + " " + classes.section_2_text_container} >
-                <h2 className={classes.heading} >What Are We?</h2>
-                <p className={classes.paragraph} >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem quibusdam velit fugit magnam magni ad, perspiciatis nobis, itaque quae commodi beatae mollitia rem dolores fugiat aliquam quo ut! Sunt, dolorem?</p>
+                <h2 className={classes.heading} ><FormattedMessage id="about_heading_2" defaultMessage="Default" values={{language}} ></FormattedMessage></h2>
+                <p className={classes.paragraph}><FormattedMessage id="about_text_2" defaultMessage="Default" values={{language}} ></FormattedMessage></p>
             </motion.div>
             <motion.div
                 key={4}
@@ -64,15 +67,22 @@ const About = () => {
                 viewport={{ once: true,  }}
                 className={classes.map + " " + classes.rounded_image}
                 >
-                    <iframe width={600} height={400} src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                     <iframe
+                          src={`https://www.google.com/maps/embed/v1/place?q=35.336758,+33.309841&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8`}
+                          width="600"
+                          height="450"
+                          style={{ border: 0 }}
+                          allowFullScreen=""
+                          loading="lazy">
+                        </iframe>
                     <div style={{display:"flex",width:"500px",marginLeft:"50px"}} >
                     <div style={{marginLeft:"75px",width:"100%"}} className={classes_2.button + " " + classes_2.button_} id="button-5">
                     <div className={classes_2.translate}></div>
-                    <a href="https://www.google.com/maps/@35.2051166,33.3822757,15z" className={classes.link} > Konum </a>
+                    <a href={`https://www.google.com/maps/place/35°20'12.3"N+33°18'35.4"E/@35.3367577,33.3076525,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x5750fa48c6dba074!8m2!3d35.3367577!4d33.3098412?hl=tr`} className={classes.link} > <FormattedMessage id="about_button_1" defaultMessage="Default" values={{language}} ></FormattedMessage> </a>
                 </div>
                 <div style={{marginLeft:"75px",width:"100%"}} className={classes_2.button + " " + classes_2.button_} id="button-5">
                     <div className={classes_2.translate}></div>
-                    <Link href="/contact" className={classes.link} > İletişim </Link>
+                    <Link href="/contact" className={classes.link} > <FormattedMessage id="about_button_2" defaultMessage="Default" values={{language}} ></FormattedMessage> </Link>
                 </div>
                     </div>
             </motion.div>
@@ -84,8 +94,8 @@ const About = () => {
                 transition={{delay:0.8,duration:0.6,type: "spring", stiffness: 30}}
                 viewport={{ once: true  }}
                 className={classes.text_container + " " + classes.text_final_container} >
-                <h2 className={classes.heading} >Where Are We?</h2>
-                <p className={classes.paragraph} >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem quibusdam velit fugit magnam magni ad, perspiciatis nobis, itaque quae commodi beatae mollitia rem dolores fugiat aliquam quo ut! Sunt, dolorem?</p>
+                <h2 className={classes.heading} ><FormattedMessage id="about_heading_3" defaultMessage="Default" values={{language}} ></FormattedMessage></h2>
+                <p className={classes.paragraph} ><FormattedMessage id="about_text_3" defaultMessage="Default" values={{language}} ></FormattedMessage></p>
             </motion.div>
             </AnimatePresence>
         </div>
@@ -102,7 +112,7 @@ const About = () => {
                     <motion.div 
                     style={{zIndex:6}}
                         className={classes.text_container + " " + classes.text_container_final_section}>
-                        <h2 style={{marginLeft:"20px"}} className={classes.heading} >Want to see our menu? <i style={{marginLeft:"10px"}} className="fa fa-chevron-right fa-lg"></i> </h2>
+                        <h2 style={{marginLeft:"20px"}} className={classes.heading} ><FormattedMessage id="menu_link_description" defaultMessage="Default" values={{language}} /> <i style={{marginLeft:"10px"}} className="fa fa-chevron-right fa-lg"></i> </h2>
                         <motion.div
                         key={10}
                         className={classes.image_hover}
@@ -113,7 +123,7 @@ const About = () => {
                           }}
                         whileTap={{ scale: 0.8,transition:{duration:0.1} }}
                         >
-                        <div className={classes.menu_link}> <Link style={{position:'absolute',top:"200px",left:"50px"}} href="/menu">Let&apos;s Go</Link> </div>
+                        <div className={classes.menu_link}> <Link style={{position:'absolute',top:"200px",left:"50px"}} href="/menu"><FormattedMessage id="about_us_menu_link" defaultMessage="Default" values={{language}} ></FormattedMessage></Link> </div>
                         <Image src={"/images/6.jpg"} alt="" width={400} height={300} />
                         </motion.div>
                      </motion.div>
@@ -141,6 +151,7 @@ const About = () => {
             </motion.div>
             </AnimatePresence>
         </div> */}
+        </IntlProvider>
     </>
 } 
 
