@@ -7,7 +7,9 @@ const Menu = () => {
             <h3 className={classes.heading} > Menu </h3>
         </div>
         
-        <iframe style={{width:"100vw",height:"100vh"}} src="https://online.fliphtml5.com/kzyks/yjhe/"  seamless="seamless" allowtransparency="true" allowfullscreen="true" ></iframe>
+        <div style={{display:"flex", justifyContent:"center"}} >
+        <iframe style={{width:"80vw",height:"100vh"}} src="https://online.fliphtml5.com/kzyks/aqjd/"  seamless="seamless" allowfullscreen="true" ></iframe>
+        </div>
     </>
 }
 

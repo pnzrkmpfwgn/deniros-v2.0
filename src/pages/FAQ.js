@@ -23,7 +23,7 @@ const FAQ = ()=>{
             className={classes.question_container}
             initial={{opacity:0,translateY:-100,skewX:0}}
             whileInView={{opacity:1,translateY:0,skewX:-20}}
-            transition={{duration:0.6,delay:2.5,type: "spring", stiffness: 30}}
+            transition={{duration:0.6,delay:1,type: "spring", stiffness: 30}}
             viewport={{ once: true, }}
         >
              <motion.div>
@@ -34,7 +34,7 @@ const FAQ = ()=>{
         className={classes.answer_container}
         initial={{opacity:0,translateY:-100,skewX:0}}
         whileInView={{opacity:1,translateY:0,skewX:-20}}
-        transition={{duration:0.6,delay:2.5,type: "spring", stiffness: 30}}
+        transition={{duration:0.6,delay:1,type: "spring", stiffness: 30}}
         viewport={{ once: true, }}
         >
              <motion.div>
